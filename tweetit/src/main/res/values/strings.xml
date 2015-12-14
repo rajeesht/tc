@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TweetIt</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_timeline">Home Timeline</string>
+    <string name="login_label">Connect with Twitter</string>
+    <string name="action_new">New</string>
+    <string name="publish_tweet">Publish</string>
+
+</resources>
