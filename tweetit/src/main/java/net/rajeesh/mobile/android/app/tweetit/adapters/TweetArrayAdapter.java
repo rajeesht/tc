@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import net.rajeesh.mobile.android.app.tweetit.R;
 import net.rajeesh.mobile.android.app.tweetit.models.Tweet;
+import net.rajeesh.mobile.android.app.tweetit.models.User;
 
 import java.util.ArrayList;
 
@@ -21,13 +22,24 @@ import java.util.ArrayList;
  */
 public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 
+
+    public interface ProfileImageViewListener {
+        void onImageClick(User user);
+    }
+
+    private ProfileImageViewListener profileImageViewListener;
+
+    public void setProfileImageListener(ProfileImageViewListener listener) {
+        this.profileImageViewListener = listener;
+    }
+
     public TweetArrayAdapter(Context context, ArrayList<Tweet> todoItems) {
         super(context, android.R.layout.simple_list_item_1, todoItems);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Tweet tweet = getItem(position);
+        final Tweet tweet = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tweet, parent, false);
@@ -50,6 +62,14 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
         tvBody.setText(tweet.getBody());
 
         ivProfile.setImageResource(android.R.color.transparent);
+        ivProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (profileImageViewListener != null) {
+                    profileImageViewListener.onImageClick(tweet.getUser());
+                }
+            }
+        });
         Picasso.with(getContext()).load(tweet.getUser().getProfileImageUrl()).into(ivProfile);
 
         return convertView;

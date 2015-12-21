@@ -7,4 +7,11 @@
         android:orderInCategory="6"
         android:icon="@android:drawable/ic_menu_add"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_profile"
+        android:title="@string/action_profile"
+        android:orderInCategory="7"
+        android:icon="@android:drawable/ic_menu_info_details"
+        app:showAsAction="always" />
 </menu>
